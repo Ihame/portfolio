@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IHAME Lievin - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --crt-bg: #0D0D0D;
+      --crt-text-primary: #33FF00;
+      --crt-text-secondary: #00B300;
+      --crt-border: #228800;
+      --crt-accent-glow: rgba(51, 255, 0, 0.5);
+
+      /* RGB values for accent colors */
+      --emerald-rgb: 51, 255, 0;  /* CRT Green */
+      --sky-rgb: 51, 255, 0; /* CRT Green for 'sky' for thematic consistency, or use a CRT blue like 0, 150, 255 */
+      --rose-rgb: 255, 80, 80;   /* CRT Red/Pink */
+      --amber-rgb: 255, 180, 0;  /* CRT Amber */
+    }
+
+    body {
+      background-color: var(--crt-bg);
+      color: var(--crt-text-primary);
+      font-family: 'SF Mono', 'Monaco', 'Consolas', 'Lucida Console', 'Courier New', monospace;
+    }
+
+    /* Scanlines effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(0, 25, 0, 0.35) 3px, /* Darker green for scanlines */
+        rgba(0, 25, 0, 0.35) 4px
+      );
+      pointer-events: none;
+      z-index: 9999; /* Ensure it's on top */
+      opacity: 0.4; /* Reduced opacity */
+    }
+
+    /* Text selection style */
+    ::selection {
+      background-color: var(--crt-text-primary);
+      color: var(--crt-bg);
+    }
+    ::-moz-selection { /* Code for Firefox */
+      background-color: var(--crt-text-primary);
+      color: var(--crt-bg);
+    }
+
+    /* Custom utility classes */
+    .font-crt-mono {
+      font-family: 'SF Mono', 'Monaco', 'Consolas', 'Lucida Console', 'Courier New', monospace;
+    }
+    .text-crt-primary { color: var(--crt-text-primary); }
+    .text-crt-secondary { color: var(--crt-text-secondary); }
+    .bg-crt-dark { background-color: #161616; } /* Slightly lighter than main bg for cards/sections */
+    .bg-crt-darker { background-color: #0A0A0A; }
+    .border-crt-green { border-color: var(--crt-border); }
+    .border-crt-primary { border-color: var(--crt-text-primary); }
+
+    .text-shadow-crt { text-shadow: 0 0 6px var(--crt-accent-glow), 0 0 10px rgba(51, 255, 0, 0.3); }
+    .text-shadow-crt-md { text-shadow: 0 0 8px var(--crt-accent-glow), 0 0 12px rgba(51, 255, 0, 0.35); }
+    .text-shadow-crt-sm { text-shadow: 0 0 4px var(--crt-accent-glow), 0 0 8px rgba(51, 255, 0, 0.25); }
+
+    /* Custom accent color classes */
+    .text-crt-emerald { color: rgb(var(--emerald-rgb)); }
+    .border-crt-emerald { border-color: rgb(var(--emerald-rgb)); }
+    .text-crt-sky { color: rgb(var(--sky-rgb)); }
+    .border-crt-sky { border-color: rgb(var(--sky-rgb)); }
+    .text-crt-rose { color: rgb(var(--rose-rgb)); }
+    .border-crt-rose { border-color: rgb(var(--rose-rgb)); }
+    .text-crt-amber { color: rgb(var(--amber-rgb)); }
+    .border-crt-amber { border-color: rgb(var(--amber-rgb)); }
+    
+    .shadow-crt-glow {
+      box-shadow: 0 0 10px -2px var(--crt-accent-glow), 0 0 20px -10px var(--crt-accent-glow);
+    }
+    .button-crt {
+      background-color: transparent;
+      border: 1px solid var(--crt-text-primary);
+      color: var(--crt-text-primary);
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .button-crt:hover {
+      background-color: var(--crt-text-primary);
+      color: var(--crt-bg);
+      box-shadow: 0 0 10px var(--crt-text-primary);
+    }
+    .button-crt:disabled {
+      border-color: var(--crt-border);
+      color: var(--crt-border);
+      background-color: transparent;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+     .button-crt:disabled:hover {
+       box-shadow: none;
+     }
+
+    /* Marquee animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 40s linear infinite;
+    }
+
+    /* Blinking cursor animation */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+      display: inline-block;
+      width: 0.55em; /* Adjusted for typical monospace char width */
+      height: 1.1em; /* Adjust height based on line-height/font-size */
+      background-color: var(--crt-text-primary);
+      margin-left: 2px;
+      vertical-align: text-bottom; /* Better alignment with text */
+      position: relative; /* For fine-tuning position if needed */
+      bottom: -0.05em; /* Small adjustment for better baseline alignment */
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/client": "https://esm.sh/react-dom@^19.1.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@^19.1.0/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai@^1.5.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="font-crt-mono">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
