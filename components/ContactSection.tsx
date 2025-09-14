@@ -1,5 +1,5 @@
 import React from 'react';
-import { PERSONA_NAME, SOCIAL_LINKS } from '../constants';
+import { PERSONA_NAME, SOCIAL_LINKS, CONTACT_INFO } from '../constants';
 
 const ContactSection: React.FC = () => {
   return (
@@ -14,10 +14,10 @@ const ContactSection: React.FC = () => {
       </p>
       
       <a
-        href="mailto:ihame.lievin@gmail.com" 
+        href={`mailto:${CONTACT_INFO.email}`}
         className="button-crt text-lg py-3 px-8 transition-all duration-300 mb-10 inline-block"
       >
-        ihame.lievin@gmail.com
+        {CONTACT_INFO.email}
       </a>
 
       <div className="flex justify-center space-x-8">

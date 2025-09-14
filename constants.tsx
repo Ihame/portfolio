@@ -1,10 +1,18 @@
 import React from 'react';
-import { Project, NavLink } from './types';
+import { Project, NavLink, Experience, Award, Certification, ContactInfo, Skill, AccentColor, SocialLink } from './types';
+
+// Feature flag to gate not-yet-present sections to avoid dead anchors
+export const ENABLE_NEW_SECTIONS = true; // TODO: set to true when sections are merged (experience, awards, certifications)
 
 export const NAV_LINKS: NavLink[] = [
   { name: 'co/about', href: '#about' },
+  // TODO: Activate when Experience section is implemented
+  ...(ENABLE_NEW_SECTIONS ? [{ name: 'co/experience', href: '#experience' } as NavLink] : []),
   { name: 'co/projects', href: '#projects' },
-  { name: 'co/aispark', href: '#aispark' },
+  // TODO: Activate when Awards section is implemented
+  ...(ENABLE_NEW_SECTIONS ? [{ name: 'co/awards', href: '#awards' } as NavLink] : []),
+  // TODO: Activate when Certifications section is implemented
+  ...(ENABLE_NEW_SECTIONS ? [{ name: 'co/certifications', href: '#certifications' } as NavLink] : []),
   { name: 'co/contact', href: '#contact' },
 ];
 
@@ -33,57 +41,208 @@ export const ExternalLinkIcon: React.FC<{ className?: string }> = ({ className =
 );
 
 export const PERSONA_NAME = "IHAME Lievin";
-export const PERSONA_TAGLINE = "Founder @ Smart Garage | Embedded Systems & Software Engineer | Innovating at the Intersection of Hardware & Code";
-export const PERSONA_BIO = `I’m the Founder of Smart Garage, a forward-thinking company specializing in mini electric vehicles (EVs), predictive maintenance, and on-board diagnostics (OBD) systems seamlessly integrated with mobile platforms. With a background in Electronics and Telecommunications Engineering, training from ALX, and over ${new Date().getFullYear() - 2016} years of experience in tech-driven solutions, I focus on building sustainable innovations that solve real-world challenges in car diagnostics and repair. My mission is to make smart vehicle technology and EV adoption more accessible, efficient, and impactful, especially across African markets. I’m driven by the vision of a greener, smarter future. By leveraging innovation, strategic partnerships, and scalable engineering, I aim to play a key role in Africa’s technological and environmental transformation.`;
+export const PERSONA_TAGLINE = "Founder & CEO @ Smart Garage | IT Management (7+ yrs) | Embedded Systems | Digital Transformation";
+export const PERSONA_BIO = `Founder & CEO of Smart Garage Africa, leading digital transformation across automotive services with mini EV platforms, predictive maintenance, and OBD-integrated mobile systems. With 7+ years in IT management and engineering leadership, I design and scale ERP systems, embedded solutions, and data-driven platforms that deliver measurable business outcomes. Recognized with national and international awards for innovation, I focus on building resilient products and teams that accelerate Africa’s transition to smarter, sustainable technology.`;
 
-export const SKILLS_LIST: string[] = [
-  'Embedded Systems', 'Software Engineering', 'Electronics', 'Telecommunications Engineering', 
-  'Predictive Maintenance', 'OBD Systems', 'Mobile Platforms', 'EV Technology', 'Virtual Assistance', 
-  'Venture Capital', 'Project Management', 'Problem Solving', 'Full-Stack Development', 
-  'Arduino', 'Microcontrollers', 'IoT', 'Automotive Technology', 'Business Strategy', 
-  'Innovation Management', 'React', 'Node.js', 'Python', 'C/C++', 'RTOS'
+export const CONTACT_INFO: ContactInfo = {
+  email: 'ihame.lievin@gmail.com',
+  phone: '+250 783 629 499',
+  location: 'Kigali, Rwanda',
+  links: {
+    linkedin: 'https://www.linkedin.com/in/ihamelievin/',
+    portfolio: 'https://smartgarage.live',
+    github: 'https://github.com/Ihame',
+    twitter: 'https://x.com/__Lievin__',
+  },
+};
+
+export const SKILLS_LIST: Skill[] = [
+  { name: 'Embedded Systems', category: 'Technical', proficiency: 'Expert' },
+  { name: 'Electronics Design', category: 'Technical', proficiency: 'Advanced' },
+  { name: 'IoT & Microcontrollers (Arduino, ESP32)', category: 'Technical', proficiency: 'Advanced' },
+  { name: 'OBD Systems & Automotive Tech', category: 'Technical', proficiency: 'Advanced' },
+  { name: 'Predictive Maintenance', category: 'Technical', proficiency: 'Advanced' },
+  { name: 'Full-Stack Development (React, Node.js, Python)', category: 'Technical', proficiency: 'Advanced' },
+  { name: 'RTOS & C/C++', category: 'Technical', proficiency: 'Intermediate' },
+  { name: 'ERP Systems & Integrations', category: 'Business', proficiency: 'Advanced' },
+  { name: 'Project & Program Management', category: 'Leadership', proficiency: 'Advanced' },
+  { name: 'Innovation Management', category: 'Leadership', proficiency: 'Advanced' },
+  { name: 'Business Strategy', category: 'Business', proficiency: 'Advanced' },
+  { name: 'Venture Building', category: 'Business', proficiency: 'Intermediate' },
+  { name: 'Team Leadership & Mentoring', category: 'Leadership', proficiency: 'Advanced' },
 ];
 
 export const PROJECTS_DATA: Project[] = [
   {
     id: 'smart-garage',
     title: 'Smart Garage Africa',
-    description: 'Founder and lead for an innovative automotive service company specializing in mini EVs, predictive maintenance, and OBD systems integrated with mobile platforms. Focused on making smart vehicle tech accessible in African markets.',
+    description: 'Leading digital transformation platform for mini EVs, predictive maintenance, and OBD-integrated mobile services. Built comprehensive technical infrastructure including embedded diagnostics, mobile applications, and data analytics systems that revolutionize automotive service delivery.',
     technologies: ['EV Technology', 'OBD Systems', 'Mobile App Dev', 'Predictive Maintenance', 'Embedded Systems', 'IoT'],
-    imageUrl: 'https://picsum.photos/seed/smartgarage_crt/600/400?grayscale&blur=1', 
+    imageUrl: '/images/projects/smart-garage.jpg', 
     liveLink: 'https://smartgarage.live',
     repoLink: 'https://github.com/Ihame', // Assuming Smart Garage repo might be under personal GitHub, adjust if different
     accentColor: 'emerald',
+    metrics: ['500+ vehicles served', '20% reduction in repeat incidents', '25-person cross-functional team', '50% improvement in project efficiency'],
+    achievements: ['YouthConnekt ICT Award winner', 'Ministry of ICT recognition', 'Trained 10+ female interns', 'Established predictive maintenance workflows'],
+    impact: 'Transforming automotive services through data-driven diagnostics and predictive maintenance, enabling smarter vehicle management across Africa.',
+  },
+  {
+    id: 'healthinspect',
+    title: 'HealthInspect.rw - Digital Health Facility Inspection Platform',
+    description: 'Government partnership platform with RSSB (Rwanda Social Security Board) for digitizing health facility inspections and compliance reporting. Built comprehensive web platform with structured workflows, dashboard analytics, and streamlined reporting systems that enhance transparency and efficiency in healthcare facility oversight.',
+    technologies: ['Web Platform', 'Database Management', 'Dashboard Development', 'Government Integration', 'Compliance Systems'],
+    imageUrl: '/images/projects/healthinspect.jpg',
+    liveLink: 'https://www.healthinspect.rw',
+    accentColor: 'sky',
+    metrics: ['Digitized inspection workflows', 'RSSB partnership delivery', 'Improved compliance reporting'],
+    achievements: ['Government partnership with RSSB', 'Streamlined inspection processes', 'Enhanced transparency in health facility compliance'],
+    impact: 'Improving healthcare system transparency and efficiency through digital transformation of health facility inspection processes.',
   },
   {
     id: 'edu-man-sys',
     title: 'Education Management System',
-    description: 'Comprehensive system for educational institutions featuring modules for admissions, fee management, student attendance, teacher hierarchy, academic calendar, and library management.',
+    description: 'Comprehensive ERP platform for educational institutions featuring integrated workflow automation, role-based security systems, and comprehensive data management. Built scalable architecture supporting admissions, academic calendar management, staff hierarchy, and library systems.',
     technologies: ['System Design', 'Database Management', 'Web Development', 'UI/UX', 'Project Management'],
-    imageUrl: 'https://picsum.photos/seed/edusys_crt/600/400?grayscale&blur=1',
+    imageUrl: '/images/projects/education-system.jpg',
     // liveLink: '#', // Keep as # if no specific live link
     // repoLink: '#', // Keep as # if no specific repo link
-    accentColor: 'sky', 
+    accentColor: 'sky',
+    metrics: ['60% reduction in manual workload', '100% improvement in data accuracy', 'Multi-role access control'],
+    achievements: ['Integrated workflow automation', 'Comprehensive ERP implementation', 'Role-based security system'],
+    impact: 'Streamlining educational administration through automated workflows and centralized data management.',
   },
   {
     id: '250trade',
     title: '250trade.rw E-commerce',
-    description: 'Co-founded an e-commerce platform initially for various products, later pivoted to specialize in high-quality electronic components like Arduino, microcontrollers, and sensors for hobbyists and professionals.',
+    description: 'Co-founded e-commerce platform that successfully pivoted to specialize in electronic components and hobbyist supplies. Built robust supply network partnerships and developed comprehensive logistics systems supporting Arduino, microcontrollers, sensors, and related components for SMEs and individual developers.',
     technologies: ['E-commerce', 'Platform Development', 'Electronics Supply', 'Business Development', 'Logistics'],
-    imageUrl: 'https://picsum.photos/seed/250trade_crt/600/400?grayscale&blur=1',
+    imageUrl: '/images/projects/250trade.jpg',
     // liveLink: '#', // Keep as # if no specific live link
     // repoLink: '#', // Keep as # if no specific repo link
-    accentColor: 'rose', 
+    accentColor: 'rose',
+    metrics: ['1,000+ orders processed', '5-year operation span', 'COVID-19 pivot success'],
+    achievements: ['Built supply network for SMEs', 'Supported hobbyist community', 'Successful business pivot'],
+    impact: 'Enabling innovation by providing reliable access to electronic components and supporting the maker community.',
+  },
+  {
+    id: 'e-umuganda',
+    title: 'E-Umuganda Digital Platform',
+    description: 'Civic-tech platform digitizing community service reporting and municipal coordination. Developed mobile-first architecture with real-time data visualization, community participation tracking, and streamlined government reporting workflows.',
+    technologies: ['Civic Tech', 'Mobile', 'Web Platform', 'Data Visualization'],
+    imageUrl: '/images/projects/e-umuganda.jpg',
+    accentColor: 'amber',
+    metrics: ['Municipal reporting streamlined', 'Mobile-first design', 'Community participation tracking'],
+    achievements: ['Increased transparency', 'Digital civic engagement', 'Government partnership'],
+    impact: 'Enhancing civic participation and government transparency through digital community service coordination.',
   },
 ];
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS: SocialLink[] = [
     { name: 'LinkedIn', Icon: LinkedinIcon, url: 'https://www.linkedin.com/in/ihamelievin/' }, 
     { name: 'GitHub', Icon: GithubIcon, url: 'https://github.com/Ihame' },
     { name: 'X', Icon: TwitterIcon, url: 'https://x.com/__Lievin__' },
 ];
 
-export const ACCENT_COLOR_MAP: { [key: string]: { text: string, border: string, shadowVar: string } } = {
+export const EXPERIENCE_DATA: Experience[] = [
+  {
+    role: 'Founder & CEO',
+    company: 'Smart Garage Africa',
+    duration: 'Jan 2022 – Present',
+    location: 'Kigali, Rwanda',
+    description: 'Building mini EV platforms, predictive maintenance, and OBD-integrated mobile services; leading product, engineering, and operations.',
+    achievements: [
+      'Served 500+ vehicles with data-driven diagnostics and service optimization',
+      'Implemented predictive maintenance workflows reducing repeat incidents by 20%+',
+      'Led cross-functional team across embedded, mobile, and operations',
+    ],
+  },
+  {
+    role: 'Innovation Fellow',
+    company: 'ThinkPad Innovation Lab',
+    duration: '2023',
+    location: 'Kigali, Rwanda',
+    description: 'Research and prototyping of embedded and AI-powered solutions for local industry challenges.',
+    achievements: [
+      'Developed proof-of-concepts for smart diagnostics and data collection',
+    ],
+  },
+  {
+    role: 'Lead Developer',
+    company: 'HealthInspect.rw',
+    duration: '2022',
+    location: 'Kigali, Rwanda',
+    description: 'Led development of health inspection and reporting platform.',
+    achievements: [
+      'Delivered production web platform with structured workflows and dashboards',
+    ],
+  },
+  {
+    role: 'Co-Founder',
+    company: '250Trade (250trade.rw)',
+    duration: '2016 – 2021',
+    location: 'Kigali, Rwanda',
+    description: 'Co-founded and operated an e-commerce platform; later specialized in electronics components.',
+    achievements: [
+      'Processed 1,000+ orders, established local supply partnerships',
+    ],
+  },
+  {
+    role: 'Assistant Manager',
+    company: 'Korea Cars',
+    duration: '2019 – 2020',
+    location: 'Kigali, Rwanda',
+    description: 'Operations and customer service management in automotive sector.',
+    achievements: [
+      'Improved workshop scheduling and client satisfaction through process changes',
+    ],
+  },
+];
+
+export const AWARDS_DATA: Award[] = [
+  {
+    title: 'YouthConnekt ICT Award',
+    issuer: 'YouthConnekt',
+    year: 2023,
+    description: 'Recognized for outstanding innovation and impact in ICT solutions.',
+  },
+  {
+    title: 'Innovation Award',
+    issuer: 'UNDP',
+    year: 2024,
+    description: 'Awarded for impactful technology innovation driving community outcomes.',
+  },
+  {
+    title: 'Industry Recognition',
+    issuer: 'Ministry & Ecosystem Partners',
+    year: 2023,
+    description: 'Recognitions for contributions to digital transformation and entrepreneurship.',
+  },
+];
+
+export const CERTIFICATIONS_DATA: Certification[] = [
+  {
+    name: 'ALX Software Engineering',
+    issuer: 'ALX',
+    year: 2023,
+  },
+  {
+    name: 'ALX Foundations',
+    issuer: 'ALX',
+    year: 2022,
+  },
+  {
+    name: 'Entrepreneurship Certificate',
+    issuer: 'BPN (Business Professionals Network)',
+    year: 2021,
+  },
+  {
+    name: 'BSc Electronics & Telecommunications',
+    issuer: 'University of Rwanda',
+    year: 2020,
+  },
+];
+
+export const ACCENT_COLOR_MAP: Record<AccentColor, { text: string; border: string; shadowVar: string }> = {
   emerald: {
     text: 'text-crt-emerald text-shadow-crt-sm',
     border: 'border-crt-emerald',

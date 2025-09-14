@@ -63,6 +63,7 @@
     .text-crt-secondary { color: var(--crt-text-secondary); }
     .bg-crt-dark { background-color: #161616; } /* Slightly lighter than main bg for cards/sections */
     .bg-crt-darker { background-color: #0A0A0A; }
+    .border-crt-border { border-color: var(--crt-border); }
     .border-crt-green { border-color: var(--crt-border); }
     .border-crt-primary { border-color: var(--crt-text-primary); }
 
@@ -81,7 +82,7 @@
     .border-crt-amber { border-color: rgb(var(--amber-rgb)); }
     
     .shadow-crt-glow {
-      box-shadow: 0 0 10px -2px var(--crt-accent-glow), 0 0 20px -10px var(--crt-accent-glow);
+      box-shadow: 0 0 10px -2px var(--shadow-color, var(--crt-accent-glow)), 0 0 20px -10px var(--shadow-color, var(--crt-accent-glow));
     }
     .button-crt {
       background-color: transparent;

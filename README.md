@@ -1,14 +1,41 @@
-# Run and deploy your AI Studio app
+# Portfolio Website
 
-This contains everything you need to run your app locally.
+A modern, responsive portfolio website built with React and TypeScript, featuring a retro CRT terminal aesthetic.
+
+## Features
+
+- Responsive design with mobile-first approach
+- Retro CRT terminal styling with glowing effects
+- Interactive sections for projects, skills, experience, and certifications
+- Smooth animations and hover effects
+- Clean, accessible codebase
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to `http://localhost:5173`
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Vitest (for testing)

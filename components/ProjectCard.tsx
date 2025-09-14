@@ -27,7 +27,45 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         )}
       <div className={`p-6 flex flex-col flex-grow`}>
         <h3 className={`text-2xl font-semibold mb-3 ${accentDetails.text}`}>{project.title}</h3>
+        
+        {/* Metrics Section */}
+        {project.metrics && project.metrics.length > 0 && (
+          <div className="mb-4">
+            <h4 className="text-xs text-crt-secondary uppercase font-semibold mb-2">Key Metrics:</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+              {project.metrics.map((metric, index) => (
+                <div key={index} className={`px-3 py-2 bg-crt-darker border ${accentDetails.border} border-opacity-50 text-xs rounded group-hover:border-opacity-100 transition-all duration-300`}>
+                  <span className={`${accentDetails.text} font-medium`}>{metric}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <p className="text-crt-secondary text-sm leading-relaxed mb-4 flex-grow">{project.description}</p>
+
+        {/* Achievements Section */}
+        {project.achievements && project.achievements.length > 0 && (
+          <div className="mb-4">
+            <h4 className="text-xs text-crt-secondary uppercase font-semibold mb-2">Notable Achievements:</h4>
+            <ul className="space-y-1">
+              {project.achievements.map((achievement, index) => (
+                <li key={index} className="flex items-start text-xs text-crt-secondary">
+                  <span className={`${accentDetails.text} mr-2 mt-0.5`}>✓</span>
+                  <span className="group-hover:text-crt-primary transition-colors">{achievement}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Impact Statement */}
+        {project.impact && (
+          <div className="mb-4 p-3 bg-crt-darker border border-crt-border border-opacity-50 rounded group-hover:border-opacity-100 transition-all duration-300">
+            <h4 className="text-xs text-crt-secondary uppercase font-semibold mb-1">Business Impact:</h4>
+            <p className="text-xs text-crt-secondary group-hover:text-crt-primary transition-colors">{project.impact}</p>
+          </div>
+        )}
         
         <div className="mb-4">
           <h4 className="text-xs text-crt-secondary uppercase font-semibold mb-2">Technologies Used:</h4>
